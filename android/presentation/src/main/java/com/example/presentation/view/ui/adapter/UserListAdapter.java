@@ -29,6 +29,11 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         this.userSelectedClick = userSelectedClick;
     }
 
+    public void filterList(List<User> filteredList) {
+        this.userList = filteredList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

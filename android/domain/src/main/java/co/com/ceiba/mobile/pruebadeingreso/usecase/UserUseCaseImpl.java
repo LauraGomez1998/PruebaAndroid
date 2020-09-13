@@ -1,5 +1,7 @@
 package co.com.ceiba.mobile.pruebadeingreso.usecase;
 
+import com.google.common.base.Strings;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,6 +22,11 @@ public class UserUseCaseImpl implements UserUseCase {
 
     @Override
     public Single<List<User>> getUserList() {
+        List<User> userList = userRepository.getLocalUserList();
+
+        if (!userList.isEmpty()) {
+            return Single.just(userList);
+        }
         return userRepository.getUserList();
     }
 

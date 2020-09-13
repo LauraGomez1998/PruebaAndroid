@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.presentation.viewmodel.handler.BaseViewModel;
 import com.example.presentation.viewmodel.handler.CallBackResponse;
-import co.com.ceiba.mobile.pruebadeingreso.common.constant.ResponseStatus;
 
 import javax.inject.Inject;
 
+import co.com.ceiba.mobile.pruebadeingreso.common.constant.ResponseStatus;
 import co.com.ceiba.mobile.pruebadeingreso.usecase.UserUseCase;
 
 public class MainActivityViewModel extends BaseViewModel {

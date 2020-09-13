@@ -18,6 +18,7 @@ import co.com.ceiba.mobile.pruebadeingreso.remote.model.user.GetUsersResp;
 import io.reactivex.Single;
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmResults;
 
 public class UserRepositoryImpl implements UserRepository {
 
@@ -86,5 +87,21 @@ public class UserRepositoryImpl implements UserRepository {
             }
             return postList;
         });
+    }
+
+    @Override
+    public List<User> getLocalUserList() {
+        List<User> userList = new ArrayList<>();
+        try (Realm realm = Realm.getDefaultInstance()) {
+            RealmResults<UserEntity> userRealmList = realm.where(UserEntity.class).findAll();
+
+            for (UserEntity userEntity : userRealmList) {
+                User user = new User();
+                userEntity.mapToUserDomain(user);
+                userList.add(user);
+            }
+        }
+
+        return userList;
     }
 }

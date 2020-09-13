@@ -1,5 +1,6 @@
 package com.example.presentation.view;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -32,9 +33,12 @@ public class PostActivity extends AppCompatActivity {
 
     public static final String USER_ID = "USER_ID";
 
+    private PostActivityViewModel viewModel;
+
     private ActivityPostBinding binding;
 
-    private PostActivityViewModel viewModel;
+    private ProgressDialog progress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class PostActivity extends AppCompatActivity {
     }
 
 
+    //region Observers
     private Observer<CallBackResponse> getUserPostsObserver = response -> {
         if (response != null) {
             switch (response.status) {
@@ -71,16 +76,18 @@ public class PostActivity extends AppCompatActivity {
 
                     break;
                 case ResponseStatus.ERROR:
-                    Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.generic_error), Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     break;
             }
+            hideProgressDialog();
         }
-
     };
+    //endregion
 
 
+    //region Logic
     private void render() {
         Bundle bundle = getIntent().getExtras();
         User user = (User) bundle.getSerializable(USER_ID);
@@ -91,6 +98,18 @@ public class PostActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         binding.recyclerViewPostsResults.setLayoutManager(layoutManager);
+
+        showProgressDialog();
         viewModel.getUserPostsList(user.getId());
     }
+
+    private void showProgressDialog() {
+        progress = ProgressDialog.show(this, getResources().getString(R.string.generic_message_progress), null, true);
+        progress.show();
+    }
+
+    private void hideProgressDialog() {
+        progress.dismiss();
+    }
+    //endregion
 }

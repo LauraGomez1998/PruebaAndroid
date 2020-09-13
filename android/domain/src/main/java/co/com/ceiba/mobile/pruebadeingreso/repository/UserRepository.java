@@ -11,4 +11,6 @@ public interface UserRepository {
     Single<List<User>> getUserList();
 
     Single<List<Post>> getUserPostsList(Integer userId);
+
+    List<User> getLocalUserList();
 }
