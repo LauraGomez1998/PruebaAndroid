@@ -11,11 +11,15 @@
  * Brightinsight Inc. employees, managers or contractors who have executed. Confidentiality and
  * Non-disclosure agreements explicitly covering such access.
  */
-package co.com.ceiba.mobile.pruebadeingreso.platform;
+package co.com.ceiba.mobile.pruebadeingreso.remote;
 
-import co.com.ceiba.mobile.pruebadeingreso.platform.model.user.GetUsersResp;
+import java.util.List;
+
+import co.com.ceiba.mobile.pruebadeingreso.remote.model.post.GetUserPostsResp;
+import co.com.ceiba.mobile.pruebadeingreso.remote.model.user.GetUsersResp;
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Parameter Name: Tresiba Start <br>
@@ -37,5 +41,8 @@ import retrofit2.http.GET;
 public interface UserService {
 
     @GET("users")
-    Single<GetUsersResp> getUsersList();
+    Single<List<GetUsersResp>> getUsersList();
+
+    @GET("posts")
+    Single<List<GetUserPostsResp>> getUserPostsList(@Query("userId") Integer userId);
 }

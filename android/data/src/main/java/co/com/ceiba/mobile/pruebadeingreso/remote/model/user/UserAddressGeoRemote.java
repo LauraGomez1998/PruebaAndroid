@@ -1,8 +1,11 @@
-package co.com.ceiba.mobile.pruebadeingreso.platform.model.user;
+package co.com.ceiba.mobile.pruebadeingreso.remote.model.user;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
+
+@Data
 public class UserAddressGeoRemote {
 
     @SerializedName("lat")

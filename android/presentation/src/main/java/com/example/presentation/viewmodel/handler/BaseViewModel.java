@@ -1,17 +1,4 @@
-/*
- * NOTICE: All information contained herein is, and remains the property of Brightinsight Inc. or
- * its customer. The intellectual and technical concepts contained herein are proprietary to
- * Brightinsight Inc. or its customer and may be covered by U.S. and Foreign Patents, patents in
- * process, and are protected by trade secret or copyright law.
- *
- * Dissemination of this information or reproduction of this material is strictly forbidden
- * unless prior written permission is obtained from Brightinsight Inc. or its customer.
- *
- * Access to the source code contained herein is hereby forbidden to anyone except current
- * Brightinsight Inc. employees, managers or contractors who have executed. Confidentiality and
- * Non-disclosure agreements explicitly covering such access.
- */
-package com.example.presentation.viewmodel;
+package com.example.presentation.viewmodel.handler;
 
 import androidx.lifecycle.ViewModel;
 
@@ -60,14 +47,6 @@ public class BaseViewModel extends ViewModel {
                 .subscribe(success, error));
     }
 
-//    protected void addObservable(Callable callable, Consumer<? super Object> success, Consumer<? super Throwable> error) {
-//        disposable.add(Single.fromCallable(()-> callable.call())
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(
-//                        success, error
-//                ));
-//    }
 
     @Override
     protected void onCleared() {

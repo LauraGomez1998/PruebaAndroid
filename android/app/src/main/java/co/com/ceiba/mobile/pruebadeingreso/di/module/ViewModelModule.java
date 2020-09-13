@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.presentation.viewmodel.MainActivityViewModel;
+import com.example.presentation.viewmodel.PostActivityViewModel;
 
 import co.com.ceiba.mobile.pruebadeingreso.di.FactoryViewModel;
 import co.com.ceiba.mobile.pruebadeingreso.di.annotation.ViewModelKey;
@@ -51,4 +52,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainActivityViewModel.class)
     abstract ViewModel bindMainActivityViewModel(MainActivityViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostActivityViewModel.class)
+    abstract ViewModel bindPostActivityViewModel(PostActivityViewModel viewModel);
 }

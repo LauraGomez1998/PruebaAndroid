@@ -11,27 +11,14 @@
  * Brightinsight Inc. employees, managers or contractors who have executed. Confidentiality and
  * Non-disclosure agreements explicitly covering such access.
  */
-package co.com.ceiba.mobile.pruebadeingreso.di.module;
+package com.example.presentation.viewmodel.handler;
 
-import android.app.Application;
-import android.content.Context;
-
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import javax.inject.Singleton;
-
-import co.com.ceiba.mobile.pruebadeingreso.di.annotation.ApplicationContext;
-import co.com.ceiba.mobile.pruebadeingreso.remote.UserService;
-import co.com.ceiba.mobile.pruebadeingreso.repository.UserRepository;
-import co.com.ceiba.mobile.pruebadeingreso.repository.UserRepositoryImpl;
-import dagger.Module;
-import dagger.Provides;
+import co.com.ceiba.mobile.pruebadeingreso.common.constant.ResponseStatus;
 
 /**
  * Parameter Name: Tresiba Start <br>
- * Component ID: RepositoryModule.java <br>
- * Description: Provides dependency injection to access to all datasources connected to the app. <br>
+ * Component ID: TresibaResponse.java <br>
+ * Description: Used as wrapper of a model find to catching the real status of background operations. <br>
  * Author: <a href="mailto:fvasquez@heinsohn.com.co">Ferney Vásquez</a> <br>
  * Copyright ©: Brightinsight, Inc. <br>
  * <p/>
@@ -45,25 +32,26 @@ import dagger.Provides;
  * </tr>
  * </table>
  */
-@Module(includes = UseCaseModule.class)
-public class RepositoryModule {
+public class CallBackResponse {
 
-    @Provides
-    Executor provideExecutor() {
-        return Executors.newSingleThreadExecutor();
+    public final String status;
+
+    public final Object data;
+
+    public final String errorCode;
+
+
+    private CallBackResponse(String status, Object data, String errorCode) {
+        this.status = status;
+        this.data = data;
+        this.errorCode = errorCode;
     }
 
-    @Provides
-    @Singleton
-    @ApplicationContext
-    Context provideContext(Application application) {
-        return application;
+    public static CallBackResponse success(Object data) {
+        return new CallBackResponse(ResponseStatus.SUCCESS, data, null);
     }
 
-
-    @Provides
-    @Singleton
-    UserRepository provideUserRepository(UserService userService) {
-        return new UserRepositoryImpl(userService);
+    public static CallBackResponse error(String errorCode) {
+        return new CallBackResponse(ResponseStatus.ERROR, false, errorCode);
     }
 }

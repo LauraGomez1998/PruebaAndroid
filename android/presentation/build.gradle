@@ -24,6 +24,10 @@ android {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -31,7 +35,6 @@ dependencies {
     implementation project(':domain')
 
     //Compatibility
-    //implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
 

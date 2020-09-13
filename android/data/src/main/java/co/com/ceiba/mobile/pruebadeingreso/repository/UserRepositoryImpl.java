@@ -1,13 +1,23 @@
 package co.com.ceiba.mobile.pruebadeingreso.repository;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
-import co.com.ceiba.mobile.pruebadeingreso.platform.UserService;
+import co.com.ceiba.mobile.pruebadeingreso.local.model.PostEntity;
+import co.com.ceiba.mobile.pruebadeingreso.local.model.UserEntity;
+import co.com.ceiba.mobile.pruebadeingreso.model.Post;
+import co.com.ceiba.mobile.pruebadeingreso.model.User;
+import co.com.ceiba.mobile.pruebadeingreso.remote.UserService;
+import co.com.ceiba.mobile.pruebadeingreso.remote.model.post.GetUserPostsResp;
+import co.com.ceiba.mobile.pruebadeingreso.remote.model.user.GetUsersResp;
 import io.reactivex.Single;
+import io.realm.Realm;
+import io.realm.RealmList;
 
 public class UserRepositoryImpl implements UserRepository {
 
@@ -19,10 +29,62 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Single<String> getUserList() {
-        return userService.getUsersList().flatMap(getUsersResp -> {
-            Log.d("prueba", new Gson().toJson(getUsersResp));
-            return Single.just("SUCCESS");
+    public Single<List<User>> getUserList() {
+        return userService.getUsersList().map(response -> {
+            List<User> userList = new ArrayList<>();
+            try (Realm realm = Realm.getDefaultInstance()) {
+                List<UserEntity> entities = new ArrayList<>();
+                for (GetUsersResp userResp : response) {
+
+                    //Map from remote object
+                    UserEntity userEntity = new UserEntity();
+                    userEntity.mapFromUserRemote(userResp);
+                    entities.add(userEntity);
+
+                    //Map to domain object
+                    User user = new User();
+                    userEntity.mapToUserDomain(user);
+                    userList.add(user);
+                }
+
+                //Insert user list
+                realm.executeTransaction(r -> r.insertOrUpdate(entities));
+            }
+
+            return userList;
+        });
+    }
+
+    @Override
+    public Single<List<Post>> getUserPostsList(Integer userId) {
+        return userService.getUserPostsList(userId).map(response -> {
+            List<Post> postList = new ArrayList<>();
+            try (Realm realm = Realm.getDefaultInstance()) {
+                RealmList<PostEntity> entities = new RealmList<>();
+                for (GetUserPostsResp postsResp : response) {
+                    //Map from remote object
+                    PostEntity postEntity = new PostEntity();
+                    postEntity.mapFromGetUserPostsResp(postsResp);
+                    entities.add(postEntity);
+
+                    //Map to domain object
+                    Post post = new Post();
+                    postEntity.mapToPostDomain(post);
+                    postList.add(post);
+                }
+
+                UserEntity userEntity = realm.where(UserEntity.class).equalTo("id", userId).findFirst();
+                realm.executeTransaction(r -> {
+                    // Insert posts
+                    r.insertOrUpdate(entities);
+
+                    //Update the user's posts
+                    userEntity.getPostsList().deleteAllFromRealm();
+                    userEntity.getPostsList().addAll(entities);
+                    r.insertOrUpdate(userEntity);
+                });
+            }
+            return postList;
         });
     }
 }

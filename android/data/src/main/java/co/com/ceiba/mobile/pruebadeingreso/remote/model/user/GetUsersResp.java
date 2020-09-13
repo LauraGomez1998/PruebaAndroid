@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.platform.model.user;
+package co.com.ceiba.mobile.pruebadeingreso.remote.model.user;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
-public class UserRemote {
+public class GetUsersResp {
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private Integer id;
 
     @SerializedName("name")
     @Expose
@@ -27,4 +27,16 @@ public class UserRemote {
     @SerializedName("address")
     @Expose
     private UserAddressRemote address;
+
+    @SerializedName("phone")
+    @Expose
+    private String phone;
+
+    @SerializedName("website")
+    @Expose
+    private String website;
+
+    @SerializedName("company")
+    @Expose
+    private UserCompanyRemote company;
 }

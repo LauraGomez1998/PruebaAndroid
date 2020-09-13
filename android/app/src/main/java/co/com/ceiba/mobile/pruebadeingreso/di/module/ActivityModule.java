@@ -14,6 +14,7 @@
 package co.com.ceiba.mobile.pruebadeingreso.di.module;
 
 import com.example.presentation.view.MainActivity;
+import com.example.presentation.view.PostActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -40,4 +41,7 @@ public interface ActivityModule {
 
     @ContributesAndroidInjector()
     MainActivity contributeMainActivity();
+
+    @ContributesAndroidInjector()
+    PostActivity contributePostActivity();
 }

@@ -18,7 +18,7 @@ import com.google.gson.GsonBuilder;
 
 import javax.inject.Singleton;
 
-import co.com.ceiba.mobile.pruebadeingreso.platform.UserService;
+import co.com.ceiba.mobile.pruebadeingreso.remote.UserService;
 import co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints;
 import dagger.Module;
 import dagger.Provides;

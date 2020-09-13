@@ -11,27 +11,16 @@
  * Brightinsight Inc. employees, managers or contractors who have executed. Confidentiality and
  * Non-disclosure agreements explicitly covering such access.
  */
-package co.com.ceiba.mobile.pruebadeingreso.di.module;
+package co.com.ceiba.mobile.pruebadeingreso.common.constant;
 
-import android.app.Application;
-import android.content.Context;
+import java.lang.annotation.Retention;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import javax.inject.Singleton;
-
-import co.com.ceiba.mobile.pruebadeingreso.di.annotation.ApplicationContext;
-import co.com.ceiba.mobile.pruebadeingreso.remote.UserService;
-import co.com.ceiba.mobile.pruebadeingreso.repository.UserRepository;
-import co.com.ceiba.mobile.pruebadeingreso.repository.UserRepositoryImpl;
-import dagger.Module;
-import dagger.Provides;
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
  * Parameter Name: Tresiba Start <br>
- * Component ID: RepositoryModule.java <br>
- * Description: Provides dependency injection to access to all datasources connected to the app. <br>
+ * Component ID: ResponseStatus.java <br>
+ * Description: Possible status for asynchronous operations performed through ViewModel layer. <br>
  * Author: <a href="mailto:fvasquez@heinsohn.com.co">Ferney Vásquez</a> <br>
  * Copyright ©: Brightinsight, Inc. <br>
  * <p/>
@@ -45,25 +34,12 @@ import dagger.Provides;
  * </tr>
  * </table>
  */
-@Module(includes = UseCaseModule.class)
-public class RepositoryModule {
+@Retention(SOURCE)
+public @interface ResponseStatus {
 
-    @Provides
-    Executor provideExecutor() {
-        return Executors.newSingleThreadExecutor();
-    }
+    String LOADING = "LOADING";
 
-    @Provides
-    @Singleton
-    @ApplicationContext
-    Context provideContext(Application application) {
-        return application;
-    }
+    String ERROR = "ERROR";
 
-
-    @Provides
-    @Singleton
-    UserRepository provideUserRepository(UserService userService) {
-        return new UserRepositoryImpl(userService);
-    }
+    String SUCCESS = "SUCCESS";
 }

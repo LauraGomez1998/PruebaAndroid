@@ -10,21 +10,23 @@ import javax.inject.Inject;
 
 import co.com.ceiba.mobile.pruebadeingreso.usecase.UserUseCase;
 
-public class MainActivityViewModel extends BaseViewModel {
+public class PostActivityViewModel extends BaseViewModel {
 
     private UserUseCase userUseCase;
 
     public MutableLiveData<CallBackResponse> getUserListResponse;
 
     @Inject
-    public MainActivityViewModel(UserUseCase userUseCase) {
+    public PostActivityViewModel(UserUseCase userUseCase) {
         this.userUseCase = userUseCase;
         getUserListResponse = new MutableLiveData<>();
     }
 
-    public void getUserList() {
-        addSingle(userUseCase.getUserList(),
-                result -> getUserListResponse.setValue(CallBackResponse.success(result)),
+    public void getUserPostsList(Integer userId) {
+        addSingle(userUseCase.getUserPostsList(userId),
+                result -> {
+                    getUserListResponse.setValue(CallBackResponse.success(result));
+                },
                 throwable -> {
                     throwable.printStackTrace();
                     getUserListResponse.setValue(CallBackResponse.error(ResponseStatus.ERROR));
