@@ -1,11 +1,12 @@
 package com.example.presentation.view;
 
-import android.app.Activity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.presentation.R;
 
-public class PostActivity extends Activity {
+public class PostActivity extends AppCompatActivity {
 
 
     @Override

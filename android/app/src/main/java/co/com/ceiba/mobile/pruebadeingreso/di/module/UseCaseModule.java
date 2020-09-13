@@ -13,7 +13,13 @@
  */
 package co.com.ceiba.mobile.pruebadeingreso.di.module;
 
+import javax.inject.Singleton;
+
+import co.com.ceiba.mobile.pruebadeingreso.repository.UserRepository;
+import co.com.ceiba.mobile.pruebadeingreso.usecase.UserUseCase;
+import co.com.ceiba.mobile.pruebadeingreso.usecase.UserUseCaseImpl;
 import dagger.Module;
+import dagger.Provides;
 
 
 /**
@@ -36,9 +42,9 @@ import dagger.Module;
 @Module(includes = RepositoryModule.class)
 public class UseCaseModule {
 
-    /*@Provides
+    @Provides
     @Singleton
-    BackgroundUseCase provideBackgroundUseCase(ConfigurationRepository configurationRepository, PatientRepository patientRepository, UserRepository userRepository, AssessmentRepository assessmentRepository) {
-        return new BackgroundUseCaseImpl(configurationRepository, patientRepository, userRepository, assessmentRepository);
-    }*/
+    UserUseCase provideUserUseCase(UserRepository userRepository) {
+        return new UserUseCaseImpl(userRepository);
+    }
 }

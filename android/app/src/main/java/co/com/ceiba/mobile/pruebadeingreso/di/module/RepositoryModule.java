@@ -22,6 +22,9 @@ import java.util.concurrent.Executors;
 import javax.inject.Singleton;
 
 import co.com.ceiba.mobile.pruebadeingreso.di.annotation.ApplicationContext;
+import co.com.ceiba.mobile.pruebadeingreso.platform.UserService;
+import co.com.ceiba.mobile.pruebadeingreso.repository.UserRepository;
+import co.com.ceiba.mobile.pruebadeingreso.repository.UserRepositoryImpl;
 import dagger.Module;
 import dagger.Provides;
 
@@ -58,9 +61,9 @@ public class RepositoryModule {
     }
 
 
-    /*@Provides
+    @Provides
     @Singleton
-    BackgroundRepository provideBackgroundRepository(PatientService patientService, SharedPreferences preferences) {
-        return new BackgroundRepositoryImpl(patientService, preferences);
-    }*/
+    UserRepository provideUserRepository(UserService userService) {
+        return new UserRepositoryImpl(userService);
+    }
 }

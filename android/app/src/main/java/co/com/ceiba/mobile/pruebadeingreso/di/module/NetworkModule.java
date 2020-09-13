@@ -16,8 +16,12 @@ package co.com.ceiba.mobile.pruebadeingreso.di.module;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.inject.Singleton;
+
+import co.com.ceiba.mobile.pruebadeingreso.platform.UserService;
 import co.com.ceiba.mobile.pruebadeingreso.rest.Endpoints;
 import dagger.Module;
+import dagger.Provides;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -45,14 +49,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module(includes = {ViewModelModule.class})
 public class NetworkModule {
 
-    /*@Provides
+    @Provides
     @Singleton
     UserService providesUserService() {
-        return obtainRetrofit(BuildConfig.PLATFORM_API_VERSION).create(UserService.class);
-    }*/
+        return obtainRetrofit().create(UserService.class);
+    }
 
-
-    private Retrofit obtainRetrofit(String version) {
+    private Retrofit obtainRetrofit() {
         Gson gson = new GsonBuilder().setLenient().create();
 
         OkHttpClient client = new OkHttpClient.Builder()

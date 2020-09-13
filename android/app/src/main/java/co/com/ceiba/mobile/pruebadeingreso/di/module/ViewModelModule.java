@@ -13,11 +13,16 @@
  */
 package co.com.ceiba.mobile.pruebadeingreso.di.module;
 
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.presentation.viewmodel.MainActivityViewModel;
 
 import co.com.ceiba.mobile.pruebadeingreso.di.FactoryViewModel;
+import co.com.ceiba.mobile.pruebadeingreso.di.annotation.ViewModelKey;
 import dagger.Binds;
 import dagger.Module;
+import dagger.multibindings.IntoMap;
 
 /**
  * Parameter Name: Tresiba Start <br>
@@ -42,8 +47,8 @@ abstract class ViewModelModule {
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(FactoryViewModel factory);
 
-    /*@Binds
+    @Binds
     @IntoMap
-    @ViewModelKey(HostViewModel.class)
-    abstract ViewModel bindHostViewModel(HostViewModel viewModel);*/
+    @ViewModelKey(MainActivityViewModel.class)
+    abstract ViewModel bindMainActivityViewModel(MainActivityViewModel viewModel);
 }

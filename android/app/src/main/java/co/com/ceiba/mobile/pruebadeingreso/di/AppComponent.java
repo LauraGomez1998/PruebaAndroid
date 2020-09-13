@@ -19,6 +19,7 @@ import android.content.SharedPreferences;
 import javax.inject.Singleton;
 
 import co.com.ceiba.mobile.pruebadeingreso.App;
+import co.com.ceiba.mobile.pruebadeingreso.di.module.ActivityModule;
 import co.com.ceiba.mobile.pruebadeingreso.di.module.FragmentModule;
 import co.com.ceiba.mobile.pruebadeingreso.di.module.NetworkModule;
 import co.com.ceiba.mobile.pruebadeingreso.di.module.RepositoryModule;
@@ -46,7 +47,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
  * </table>
  */
 @Singleton
-@Component(modules = {NetworkModule.class, RepositoryModule.class/*ActivityModule.class*/, FragmentModule.class, UseCaseModule.class, AndroidSupportInjectionModule.class})
+@Component(modules = {NetworkModule.class, RepositoryModule.class, ActivityModule.class/*, FragmentModule.class*/, UseCaseModule.class, AndroidSupportInjectionModule.class})
 public interface AppComponent {
 
     @Component.Builder

@@ -38,6 +38,6 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public interface ActivityModule {
 
-    @ContributesAndroidInjector(modules = {FragmentModule.class})
+    @ContributesAndroidInjector()
     MainActivity contributeMainActivity();
 }

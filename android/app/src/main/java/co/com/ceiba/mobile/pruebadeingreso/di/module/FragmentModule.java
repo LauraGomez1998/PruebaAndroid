@@ -39,9 +39,9 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class FragmentModule {
 
-    @ContributesAndroidInjector()
+    /*@ContributesAndroidInjector()
     abstract MainActivity contributeMainActivity();
 
     @ContributesAndroidInjector()
-    abstract PostActivity contributePostActivity();
+    abstract PostActivity contributePostActivity();*/
 }

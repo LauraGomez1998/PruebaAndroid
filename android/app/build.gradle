@@ -1,5 +1,18 @@
 apply plugin: 'com.android.application'
-apply plugin: 'realm-android'
+//apply plugin: 'com.google.gms.google-services'
+
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
 
 android {
     compileSdkVersion 28
@@ -18,16 +31,19 @@ android {
     dataBinding {
         enabled = true
     }
-    realm {
-        syncEnabled = true;
-    }
+
     buildTypes {
+        debug {
+            multiDexEnabled true
+            buildConfigField "String", "API_DOMAIN", API_DOMAIN
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "API_DOMAIN", API_DOMAIN
         }
     }
-    packagingOptions{
+    packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
     compileOptions {
@@ -38,20 +54,29 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
+    implementation project(':data')
     implementation project(':presentation')
 
     //Compatibility
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.legacy:legacy-support-v4:1.0.0"
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     //UI
-    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
+    implementation "com.google.android.material:material:1.3.0-alpha02"
+    implementation "androidx.constraintlayout:constraintlayout:2.0.1"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    /*implementation 'com.android.support.constraint:constraint-layout:2.0.1'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'*/
 
 
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    /*implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.4'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
@@ -60,11 +85,10 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.3.0'
-    implementation 'org.parceler:parceler-api:1.1.10'
-    implementation 'com.facebook.stetho:stetho:1.5.0'
-    annotationProcessor 'org.projectlombok:lombok:1.16.14'
-    annotationProcessor 'org.parceler:parceler:1.1.10'
-    implementation 'org.projectlombok:lombok:1.16.14'
+    implementation 'com.facebook.stetho:stetho:1.5.0'*/
+    //annotationProcessor 'org.projectlombok:lombok:1.16.14'
+    //annotationProcessor 'org.parceler:parceler:1.1.10'
+    //implementation 'org.projectlombok:lombok:1.16.14'
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.5.0"
@@ -79,10 +103,33 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:2.23.2"
 
 
+    //Testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.0.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+
+    // Assertions
+    androidTestImplementation 'androidx.test.ext:junit:1.0.0'
+    androidTestImplementation 'androidx.test.ext:truth:1.0.0'
+    androidTestImplementation 'com.google.truth:truth:0.42'
+
+    // Espresso dependencies
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-web:3.1.0'
+    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.1.0'
+
+    // The following Espresso dependency can be either "implementation"
+    // or "androidTestImplementation", depending on whether you want the
+    // dependency to appear on your APK's compile classpath or the test APK
+    // classpath.
+    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.0'
 }
