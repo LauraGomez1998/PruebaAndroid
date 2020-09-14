@@ -14,29 +14,29 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 public class PageObject {
 
-    public void sleep(int segundos) throws InterruptedException {
-        Thread.sleep(segundos * 1000);
+    public void sleep(int seconds) throws InterruptedException {
+        Thread.sleep(seconds * 1000);
     }
 
-    public void navegarMenu(int idActivity, int idFragment) {
+    public void navigate(int idActivity, int idFragment) {
         onView(withId(idActivity)).perform(NavigationViewActions.navigateTo(idFragment));
     }
 
-    public void escribirEdit(int id, String texto) {
+    public void writeEdit(int id, String text) {
         ViewInteraction editText = Espresso.onView(withId(id));
-        editText.perform(replaceText(texto));
+        editText.perform(replaceText(text));
     }
 
-    public void clickBoton(int idBoton) {
-        onView(withId(idBoton)).perform(click());
+    public void clickButton(int idButton) {
+        onView(withId(idButton)).perform(click());
     }
 
-    public void matchToast(int idMensaje) {
-        onView(withText(idMensaje)).inRoot(new ToastMatcher())
+    public void matchToast(int idMessage) {
+        onView(withText(idMessage)).inRoot(new ToastMatcher())
                 .check(ViewAssertions.matches(isDisplayed()));
     }
 
-    public void matchEdit(int idEdit, String mensaje) {
-        onView(withId(idEdit)).check(ViewAssertions.matches(withText(mensaje)));
+    public void matchEdit(int idEdit, String message) {
+        onView(withId(idEdit)).check(ViewAssertions.matches(withText(message)));
     }
 }

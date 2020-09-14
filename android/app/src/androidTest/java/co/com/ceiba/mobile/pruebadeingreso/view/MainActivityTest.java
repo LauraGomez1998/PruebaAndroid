@@ -1,8 +1,5 @@
 package co.com.ceiba.mobile.pruebadeingreso.view;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.ViewAction;
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Before;
@@ -32,7 +29,7 @@ public class MainActivityTest {
     public void filterList() throws InterruptedException {
         pageObject.sleep(3);
 
-        pageObject.escribirEdit(R.id.editTextSearch, "Leanne");
+        pageObject.writeEdit(R.id.editTextSearch, "Leanne");
         pageObject.matchEdit(R.id.editTextSearch, "Leanne");
     }
 }
