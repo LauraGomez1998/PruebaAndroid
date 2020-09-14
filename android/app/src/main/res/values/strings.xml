@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Common strings -->
-
+    <string name="app_name">Prueba de Ingreso</string>
     <string name="generic_message_progress">Por favor espere...</string>
     <string name="generic_error">Ha ocurrido un error inesperado</string>
     <string name="accept">Aceptar</string>

@@ -1,5 +1,6 @@
-package com.example.presentation;
+package co.com.ceiba.mobile.pruebadeingreso;
 
+import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.NavigationViewActions;
@@ -22,7 +23,7 @@ public class PageObject {
     }
 
     public void escribirEdit(int id, String texto) {
-        ViewInteraction editText = onView(withId(id));
+        ViewInteraction editText = Espresso.onView(withId(id));
         editText.perform(replaceText(texto));
     }
 

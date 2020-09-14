@@ -1,13 +1,16 @@
-package com.example.presentation.view;
+package co.com.ceiba.mobile.pruebadeingreso.view;
 
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
-
-import com.example.presentation.PageObject;
-import com.example.presentation.R;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import co.com.ceiba.mobile.pruebadeingreso.PageObject;
+import co.com.ceiba.mobile.pruebadeingreso.R;
 
 
 public class MainActivityTest {
@@ -29,6 +32,7 @@ public class MainActivityTest {
     public void filterList() throws InterruptedException {
         pageObject.sleep(3);
 
-        pageObject.escribirEdit(R.id.name, "Leanne");
+        pageObject.escribirEdit(R.id.editTextSearch, "Leanne");
+        pageObject.matchEdit(R.id.editTextSearch, "Leanne");
     }
 }

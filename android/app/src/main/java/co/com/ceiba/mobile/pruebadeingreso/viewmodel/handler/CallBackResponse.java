@@ -11,18 +11,14 @@
  * Brightinsight Inc. employees, managers or contractors who have executed. Confidentiality and
  * Non-disclosure agreements explicitly covering such access.
  */
-package co.com.ceiba.mobile.pruebadeingreso.di.module;
+package co.com.ceiba.mobile.pruebadeingreso.viewmodel.handler;
 
-import com.example.presentation.view.MainActivity;
-import com.example.presentation.view.PostActivity;
-
-import dagger.Module;
-import dagger.android.ContributesAndroidInjector;
+import co.com.ceiba.mobile.pruebadeingreso.common.constant.ResponseStatus;
 
 /**
  * Parameter Name: Tresiba Start <br>
- * Component ID: FragmentModule.java <br>
- * Description: Defines which fragments will use dependency injection. <br>
+ * Component ID: TresibaResponse.java <br>
+ * Description: Used as wrapper of a model find to catching the real status of background operations. <br>
  * Author: <a href="mailto:fvasquez@heinsohn.com.co">Ferney Vásquez</a> <br>
  * Copyright ©: Brightinsight, Inc. <br>
  * <p/>
@@ -32,16 +28,30 @@ import dagger.android.ContributesAndroidInjector;
  * <th>Author</th><th>Date</th><th>Version</th><th>Change-Description</th>
  * </tr>
  * <tr>
- * <td>Ferney Vásquez</td><td>10/4/2019</td><td>1.0</td><td>Initial</td>
+ * <td>Ferney Vásquez</td><td>8/22/2019</td><td>1.0</td><td>Initial</td>
  * </tr>
  * </table>
  */
-@Module
-public abstract class FragmentModule {
+public class CallBackResponse {
 
-    /*@ContributesAndroidInjector()
-    abstract MainActivity contributeMainActivity();
+    public final String status;
 
-    @ContributesAndroidInjector()
-    abstract PostActivity contributePostActivity();*/
+    public final Object data;
+
+    public final String errorCode;
+
+
+    private CallBackResponse(String status, Object data, String errorCode) {
+        this.status = status;
+        this.data = data;
+        this.errorCode = errorCode;
+    }
+
+    public static CallBackResponse success(Object data) {
+        return new CallBackResponse(ResponseStatus.SUCCESS, data, null);
+    }
+
+    public static CallBackResponse error(String errorCode) {
+        return new CallBackResponse(ResponseStatus.ERROR, false, errorCode);
+    }
 }

@@ -13,9 +13,8 @@
  */
 package co.com.ceiba.mobile.pruebadeingreso.di.module;
 
-import com.example.presentation.view.MainActivity;
-import com.example.presentation.view.PostActivity;
-
+import co.com.ceiba.mobile.pruebadeingreso.view.MainActivity;
+import co.com.ceiba.mobile.pruebadeingreso.view.PostActivity;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 

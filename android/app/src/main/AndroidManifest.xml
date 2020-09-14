@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.presentation.view.PostActivity" />
+        <activity android:name=".view.PostActivity" />
 
         <activity
-            android:name="com.example.presentation.view.MainActivity"
+            android:name=".view.MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustNothing">

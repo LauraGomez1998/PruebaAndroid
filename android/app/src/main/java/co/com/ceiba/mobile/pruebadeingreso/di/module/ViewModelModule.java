@@ -16,11 +16,10 @@ package co.com.ceiba.mobile.pruebadeingreso.di.module;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.presentation.viewmodel.MainActivityViewModel;
-import com.example.presentation.viewmodel.PostActivityViewModel;
-
 import co.com.ceiba.mobile.pruebadeingreso.di.FactoryViewModel;
 import co.com.ceiba.mobile.pruebadeingreso.di.annotation.ViewModelKey;
+import co.com.ceiba.mobile.pruebadeingreso.viewmodel.MainActivityViewModel;
+import co.com.ceiba.mobile.pruebadeingreso.viewmodel.PostActivityViewModel;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
