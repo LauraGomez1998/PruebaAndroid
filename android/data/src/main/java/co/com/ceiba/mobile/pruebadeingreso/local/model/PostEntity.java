@@ -2,7 +2,6 @@ package co.com.ceiba.mobile.pruebadeingreso.local.model;
 
 import co.com.ceiba.mobile.pruebadeingreso.model.Post;
 import co.com.ceiba.mobile.pruebadeingreso.remote.model.post.GetUserPostsResp;
-import co.com.ceiba.mobile.pruebadeingreso.remote.model.user.GetUsersResp;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import lombok.Data;

@@ -26,6 +26,21 @@ import co.com.ceiba.mobile.pruebadeingreso.model.User;
 import co.com.ceiba.mobile.pruebadeingreso.view.ui.adapter.PostListAdapter;
 import dagger.android.AndroidInjection;
 
+/**
+ * Component ID: PostActivity.java <br>
+ * Description: In this screen the post of a user selected are presented. <br>
+ * Author: <a href="mailto:lauragomez.lg247@gmail.com">Laura Gómez</a>
+ * <p/>
+ * Revision Change
+ * <table>
+ * <tr>
+ * <th>Author</th><th>Date</th><th>Version</th><th>Change-Description</th>
+ * </tr>
+ * <tr>
+ * <td>Laura Gómez</td><td>9/12/2020</td><td>1.0</td><td>Initial</td>
+ * </tr>
+ * </table>
+ */
 public class PostActivity extends AppCompatActivity {
 
     @Inject

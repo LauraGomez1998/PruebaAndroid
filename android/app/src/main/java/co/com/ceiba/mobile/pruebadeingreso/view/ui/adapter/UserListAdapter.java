@@ -14,19 +14,34 @@ import java.util.List;
 
 import co.com.ceiba.mobile.pruebadeingreso.model.User;
 
+/**
+ * Component ID: UserListAdapter.java <br>
+ * Description: Adapter to handle the User's RecyclerView. <br>
+ * Author: <a href="mailto:lauragomez.lg247@gmail.com">Laura Gómez</a>
+ * <p/>
+ * Revision Change
+ * <table>
+ * <tr>
+ * <th>Author</th><th>Date</th><th>Version</th><th>Change-Description</th>
+ * </tr>
+ * <tr>
+ * <td>Laura Gómez</td><td>9/12/2020</td><td>1.0</td><td>Initial</td>
+ * </tr>
+ * </table>
+ */
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> {
 
     private Context context;
 
-    private UserSelectedClick userSelectedClick;
+    private OnClickListenerUserList onClickListenerUserList;
 
     private List<User> userList;
 
 
-    public UserListAdapter(Context context, List<User> userList, UserSelectedClick userSelectedClick) {
+    public UserListAdapter(Context context, List<User> userList, OnClickListenerUserList onClickListenerUserList) {
         this.context = context;
         this.userList = userList;
-        this.userSelectedClick = userSelectedClick;
+        this.onClickListenerUserList = onClickListenerUserList;
     }
 
     public void filterList(List<User> filteredList) {
@@ -46,7 +61,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         viewHolder.textViewName.setText(userList.get(position).getName());
         viewHolder.textViewPhone.setText(userList.get(position).getPhone());
         viewHolder.textViewEmail.setText(userList.get(position).getEmail());
-        viewHolder.btnViewPost.setOnClickListener(view -> userSelectedClick.userSelectedOnClickListener(userList.get(position)));
+        viewHolder.btnViewPost.setOnClickListener(view -> onClickListenerUserList.userSelectedOnClickListener(userList.get(position)));
     }
 
     @Override

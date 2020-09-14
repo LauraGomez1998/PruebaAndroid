@@ -1,10 +1,7 @@
 package co.com.ceiba.mobile.pruebadeingreso.repository;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -20,6 +17,21 @@ import io.realm.Realm;
 import io.realm.RealmList;
 import io.realm.RealmResults;
 
+/**
+ * Component ID: UserRepository.java <br>
+ * Description: Main implementation for {@link UserRepository}<br>
+ * Author: <a href="mailto:lagomez@heinsohn.com.co">Laura Gómez</a> <br>
+ * <p/>
+ * Revision Change
+ * <table>
+ * <tr>
+ * <th>Author</th><th>Date</th><th>Version</th><th>Change-Description</th>
+ * </tr>
+ * <tr>
+ * <td>Laura Gómez</td><td>9/12/2020</td><td>1.0</td><td>Initial</td>
+ * </tr>
+ * </table>
+ */
 public class UserRepositoryImpl implements UserRepository {
 
     private UserService userService;

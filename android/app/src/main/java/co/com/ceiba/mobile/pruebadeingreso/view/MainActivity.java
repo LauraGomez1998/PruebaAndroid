@@ -28,10 +28,25 @@ import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.common.constant.ResponseStatus;
 import co.com.ceiba.mobile.pruebadeingreso.model.User;
 import co.com.ceiba.mobile.pruebadeingreso.view.ui.adapter.UserListAdapter;
-import co.com.ceiba.mobile.pruebadeingreso.view.ui.adapter.UserSelectedClick;
+import co.com.ceiba.mobile.pruebadeingreso.view.ui.adapter.OnClickListenerUserList;
 import dagger.android.AndroidInjection;
 
-public class MainActivity extends AppCompatActivity implements UserSelectedClick {
+/**
+ * Component ID: MainActivity.java <br>
+ * Description: In this screen the user list is presented. <br>
+ * Author: <a href="mailto:lauragomez.lg247@gmail.com">Laura Gómez</a>
+ * <p/>
+ * Revision Change
+ * <table>
+ * <tr>
+ * <th>Author</th><th>Date</th><th>Version</th><th>Change-Description</th>
+ * </tr>
+ * <tr>
+ * <td>Laura Gómez</td><td>9/12/2020</td><td>1.0</td><td>Initial</td>
+ * </tr>
+ * </table>
+ */
+public class MainActivity extends AppCompatActivity implements OnClickListenerUserList {
 
     @Inject
     protected ViewModelProvider.Factory viewModelFactory;
